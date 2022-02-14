@@ -1,0 +1,58 @@
+/*Cordial saludo
+
+Por medio de la presente me gustaría solicitar la información del SIGMA disponible
+sobre la estructura de los manglares para la Isla de San Andrés (me interesa la 
+información por estaciones, en particular para el Parque Regional Old Point) y para
+la Ciénaga Grande de Santa Marta. La razón de esta solicitud es que en el momento me
+encuentro recopilando información para el proyecto "Reguladores del servicio de control
+de la erosión provisto por manglares en diferentes ambientes costeros continentales e 
+insulares del Caribe y Pacifico Colombiano" de la Universidad Nacional de Colombia.
+
+De antemano agradezco la colaboración y quedo atenta.
+*/
+
+
+SELECT
+--ve.ERR_CREACION,
+ve.ID_MUESTREO,
+ve.ID_MUESTRA,
+ve.FECHA,
+ve.ANO,
+ve.MES,
+ve.DES_PARCELA,
+ve.REGION,
+ve.ID_REGION,
+ve.UAC,
+ve.ID_UAC,
+ve.ID_DEPARTAMENTO,
+ve.DEPARTAMENTO,
+ve.SECTOR,
+ve.ID_SECTOR,
+ve.UNIDAD_DE_MANEJO,
+ve.ID_UNIDAD_DE_MANEJO,
+ve.ESTACION,
+ve.ID_ESTACION,
+ve.PARCELA,
+ve.ID_PARCELA,
+ve.NUM_SUBPARCELAS,
+ve.AREA_SUBPARCELA,
+ve.SUBPARCELA,
+ve.TAG_ARBOL,
+ve.ID_ARBOL,
+ve.ESTADO_ARBOL,
+ve.ID_ESTADO_ARBOL,
+ve.TIPO,
+ve.ID_TIPO,
+ve.ESPECIE,
+ve.ID_ESPECIE,
+ve.ALTURA,
+ve.CAP,
+ve.DAP,
+ve.NOTAS,
+ct.path_lugar from 
+         v_2021_argos_estructura ve
+JOIN geograficos.clocalidadt ct ON ve.id_estacion = ct.id_estacion   
+WHERE
+    ve.id_estacion IN ( SELECT id_estacion FROM geograficos.clocalidadt WHERE  path_codigo LIKE '%UAC-SAI%') 
+    order by ve.ano asc
+ 

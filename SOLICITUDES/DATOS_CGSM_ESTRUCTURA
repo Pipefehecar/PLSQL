@@ -1,0 +1,20 @@
+/*Cordial saludo
+
+Por medio de la presente me gustaría solicitar la información del SIGMA disponible
+sobre la estructura de los manglares para la Isla de San Andrés (me interesa la 
+información por estaciones, en particular para el Parque Regional Old Point) y para
+la Ciénaga Grande de Santa Marta. La razón de esta solicitud es que en el momento me
+encuentro recopilando información para el proyecto "Reguladores del servicio de control
+de la erosión provisto por manglares en diferentes ambientes costeros continentales e 
+insulares del Caribe y Pacifico Colombiano" de la Universidad Nacional de Colombia.
+
+De antemano agradezco la colaboración y quedo atenta.
+*/
+
+select count(*) from agd_muestras where id_muestreo in (
+select id_muestreo from agd_muestreos where id_metodologia = 3
+);
+
+SELECT * FROM GEOGRAFICOS.CLOCALIDADT  WHERE ID_ESTACION IN (select id_estacion from vm_agm_1513_3) ;
+
+SELECT VM.*, ct.path_lugar  FROM VM_AGM_1513_3 VM JOIN geograficos.clocalidadt ct ON VM.id_estacion = ct.id_estacion ;
