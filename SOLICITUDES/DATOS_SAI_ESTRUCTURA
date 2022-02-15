@@ -13,46 +13,75 @@ De antemano agradezco la colaboración y quedo atenta.
 
 
 SELECT
---ve.ERR_CREACION,
-ve.ID_MUESTREO,
-ve.ID_MUESTRA,
-ve.FECHA,
-ve.ANO,
-ve.MES,
-ve.DES_PARCELA,
-ve.REGION,
-ve.ID_REGION,
-ve.UAC,
-ve.ID_UAC,
-ve.ID_DEPARTAMENTO,
-ve.DEPARTAMENTO,
-ve.SECTOR,
-ve.ID_SECTOR,
-ve.UNIDAD_DE_MANEJO,
-ve.ID_UNIDAD_DE_MANEJO,
-ve.ESTACION,
-ve.ID_ESTACION,
-ve.PARCELA,
-ve.ID_PARCELA,
-ve.NUM_SUBPARCELAS,
-ve.AREA_SUBPARCELA,
-ve.SUBPARCELA,
-ve.TAG_ARBOL,
-ve.ID_ARBOL,
-ve.ESTADO_ARBOL,
-ve.ID_ESTADO_ARBOL,
-ve.TIPO,
-ve.ID_TIPO,
-ve.ESPECIE,
-ve.ID_ESPECIE,
-ve.ALTURA,
-ve.CAP,
-ve.DAP,
-ve.NOTAS,
-ct.path_lugar from 
-         v_2021_argos_estructura ve
-JOIN geograficos.clocalidadt ct ON ve.id_estacion = ct.id_estacion   
+--VE.ERR_CREACION,
+--TO_CHAR(VE.ID_MUESTREO),
+--TO_CHAR(VE.ID_MUESTRA),
+VE.FECHA,
+VE.ANO,
+VE.MES,
+VE.ESTACION,
+VE.ID_ESTACION,
+VE.PARCELA,
+VE.SUBPARCELA,
+VE.AREA_SUBPARCELA,
+VE.NUM_SUBPARCELAS,
+VE.DES_PARCELA,
+VE.SECTOR,
+VE.UAC,
+VE.UNIDAD_DE_MANEJO,
+VE.REGION,
+VE.DEPARTAMENTO,
+--VE.ID_REGION,
+--VE.ID_UAC,
+--VE.ID_DEPARTAMENTO,
+CT.PATH_LUGAR,
+--VE.ID_SECTOR,
+--VE.ID_UNIDAD_DE_MANEJO,
+
+--VE.ID_PARCELA,
+--VE.ID_ARBOL,
+VE.TAG_ARBOL,
+VE.ESPECIE,
+VE.ESTADO_ARBOL,
+VE.TIPO,
+VE.ALTURA,
+VE.CAP,
+VE.DAP
+--VE.ID_ESTADO_ARBOL,
+--VE.ID_TIPO,
+--VE.ID_ESPECIE,
+--VE.NOTAS,
+FROM   
+    V_2021_ARGOS_ESTRUCTURA VE
+JOIN 
+    GEOGRAFICOS.CLOCALIDADT CT ON VE.ID_ESTACION = CT.ID_ESTACION   
 WHERE
-    ve.id_estacion IN ( SELECT id_estacion FROM geograficos.clocalidadt WHERE  path_codigo LIKE '%UAC-SAI%') 
-    order by ve.ano asc
+    VE.ID_ESTACION IN ( SELECT ID_ESTACION FROM GEOGRAFICOS.CLOCALIDADT WHERE  PATH_CODIGO LIKE '%UAC-SAI%') 
+    ORDER BY VE.ANO ASC
+
+
+
+[Ayer 14:31] JULIO BOHORQUEZ NARANJO
+->PARA CGSM:
+- Agregar coordenadas indicando que el sistema de referencia es WGS84, 
+- Agregar bandera de calidad 2= datos sin verificar, 
+- 3 agregar unidades de medida cm y metros;  
+- para conocer la metodologia del monitoreo (parcelas cuadradas), 
+- en general para la CGSM consultar los informes técnicos del proyecto de monitoreo de la rehabilitacion de la CGSM.  
+- par CGSM consultar con camilo.rodriguez@invemar.org.co. 
+
+->PARA SAN ANDRES:
+- Para San Andres Islas no se han ingresado los datos de monitoreo de años recientes, 
+- por favor consulte con la administradora del sistema Alexandra Rodriguez, datos recolectados por Selene Rojas. 
+- La metodologia de San Andres aplica en algunos casos parcelas circulares. 
+- El area de las parcelas esta en hectareas, el DAP es derivado de la cintura a la altura del pecho y esta en centimetros. 
+- Las alturas de los arboles es medida principalmente por estimación visual y esta en metros.  
+
+* Completar nomenclatura de las subparcelas/parcelas.  Información sobre los datos metodologias, etc 
+* Agregar en pestaña  metadatos la fecha en que se extraen los datos y la persona que hizo la tarea
+* Añadir informacion de las estaciones
+
+[Ayer 14:33] JULIO BOHORQUEZ NARANJO
+
+
  

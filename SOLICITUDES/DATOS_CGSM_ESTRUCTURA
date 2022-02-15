@@ -9,7 +9,7 @@ de la erosión provisto por manglares en diferentes ambientes costeros continent
 insulares del Caribe y Pacifico Colombiano" de la Universidad Nacional de Colombia.
 
 De antemano agradezco la colaboración y quedo atenta.
-*/
+
 
 select count(*) from agd_muestras where id_muestreo in (
 select id_muestreo from agd_muestreos where id_metodologia = 3
@@ -17,4 +17,74 @@ select id_muestreo from agd_muestreos where id_metodologia = 3
 
 SELECT * FROM GEOGRAFICOS.CLOCALIDADT  WHERE ID_ESTACION IN (select id_estacion from vm_agm_1513_3) ;
 
-SELECT VM.*, ct.path_lugar  FROM VM_AGM_1513_3 VM JOIN geograficos.clocalidadt ct ON VM.id_estacion = ct.id_estacion ;
+*/
+SELECT 
+VM.FECHA_ANO,
+VM.FECHA_MES,
+VM.FECHA, 
+
+--VM.ID_MUESTRA,
+--VM.ID_MUESTREO,
+--VM.ID_MUESTREOTX,
+VM.ID_ESTACION AS ID_SUBPARCELA,
+VM.NOM_ESTACION AS SUBPARCELA,
+--VM.ID_PROYECTO,
+--VM.ID_METODOLOGIA,
+--VM.ID_TEMATICAS,
+
+--VM.PARTICIPANTES,
+--VM.ENTIDADES,
+-- VM.NOTAS_GENERALES,
+--VM.SUBPARCELA,
+VM.ESTACIONES AS ID_ESTACION,
+VM.ESTACIONES_DES AS ESTACION,
+--VM.COD_ESTACION,
+VM.DES_ESTACION,
+VM.NUM_SUBPARCELAS,
+VM.AREA_SUBPARCELA,
+-- VM.URL_METADATO,
+-- VM.ARCHIVO_FUENTE,
+-- VM.VERSION_PLANTILLA,
+
+--VM.SUS_ESTACION,
+--VM.SUS_ESTACION_DES,
+--VM.REGION,
+VM.REGION_DES,
+--VM.UNIDAD_AMBIENTAL_COSTERA,
+VM.UNIDAD_AMBIENTAL_COSTERA_DES,
+--VM.SECTOR,
+VM.SECTOR_DES,
+--VM.UNIDAD_DE_MANEJO,
+VM.UNIDAD_DE_MANEJO_DES,
+
+--VM.EST_TC,
+--VM.EST_TIPO_FISI,
+--VM.EST_FI,
+--VM.EST_AZIMUT,
+--VM.EST_FechaCreacion,
+-- VM.EST_Activo,
+--VM.EST_PAISAJE,
+--VM.EST_FP,
+CT.PATH_LUGAR,
+VM.NOTAS,
+-- VM.ES_REPLICA,
+  
+VM.ID_ARBOL,
+VM.TAG_ARBOL,
+VM.ESPECIE,
+VM.ESPECIE_DES,
+--VM.ESTADO,
+VM.ESTADO_DES,
+--VM.TIPO,
+VM.TIPO_DES,
+VM.ALTURA,
+--VM.CAP,
+VM.DAP,
+VM.QUALITY_FLAG,
+  CASE
+    WHEN VM.QUALITY_FLAG = 2 THEN 'DATO SIN VERIFICAR'
+  END AS QUALITY_FLAG_DESC
+-- VM.ERR_CREACION,
+-- VM.FACTUALIZACION,
+
+FROM VM_AGM_1513_3 VM JOIN geograficos.clocalidadt ct ON VM.id_estacion = ct.id_estacion;
